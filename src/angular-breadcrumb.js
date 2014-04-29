@@ -12,6 +12,10 @@ angular.module('ncy-angular-breadcrumb', ['ui.router.state'])
         };
 
         var $pushNonexistentState = function(array, state) {
+            // Allow user to explicitly ignore state
+            if (state.data && (state.data.ncyBreadcrumbLabel === false)) {
+                return false;
+            }
             var stateAlreadyInArray = false;
             angular.forEach(array, function(value) {
                 if(!stateAlreadyInArray && angular.equals(value, state)) {

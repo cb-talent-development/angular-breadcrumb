@@ -1,4 +1,4 @@
-/*! angular-breadcrumb - v0.1.0 - 2014-04-10
+/*! angular-breadcrumb - v0.1.0 - 2014-04-29
 * https://github.com/ncuillery/angular-breadcrumb
 * Copyright (c) 2014 Nicolas Cuillery; Licensed MIT */
 angular.module('ncy-angular-breadcrumb', ['ui.router.state'])
@@ -15,6 +15,10 @@ angular.module('ncy-angular-breadcrumb', ['ui.router.state'])
         };
 
         var $pushNonexistentState = function(array, state) {
+            // Allow user to explicitly ignore state
+            if (state.data && (state.data.ncyBreadcrumbLabel === false)) {
+                return false;
+            }
             var stateAlreadyInArray = false;
             angular.forEach(array, function(value) {
                 if(!stateAlreadyInArray && angular.equals(value, state)) {
