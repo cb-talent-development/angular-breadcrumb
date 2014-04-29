@@ -1,4 +1,4 @@
-/*! angular-breadcrumb - v0.1.0 - 2014-04-28
+/*! angular-breadcrumb - v0.1.0 - 2014-04-29
 * https://github.com/ncuillery/angular-breadcrumb
 * Copyright (c) 2014 Nicolas Cuillery; Licensed MIT */
 angular.module('ncy-angular-breadcrumb', ['ui.router.state'])
@@ -39,6 +39,12 @@ angular.module('ncy-angular-breadcrumb', ['ui.router.state'])
 
             // Add the state in the chain if not already in and if not abstract
             var $$addStateInChain = function(chain, state, prefixStateInserted) {
+
+                // Allow user to explicitly ignore state
+                if (state.data && (state.data.ncyBreadcrumbLabel === false)) {
+                    return false;
+                }
+
                 var stateAlreadyInChain = false;
                 angular.forEach(chain, function(value) {
                     if(!stateAlreadyInChain && angular.equals(value, state)) {

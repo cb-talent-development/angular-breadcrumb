@@ -12,6 +12,17 @@ angular.module('ncy-basic-conf', []).config(function($stateProvider) {
 });
 
 /**
+ * Module with ignored breadcrumb states.
+ */
+angular.module('ncy-ignore-conf', []).config(function($stateProvider) {
+    $stateProvider
+        .state('A', {url: '/a', data: {ncyBreadcrumbLabel: 'State A'}})
+        .state('A.B', {url: '/b', data: {ncyBreadcrumbLabel: 'State B'}})
+        .state('A.B.C', {url: '/c', data: {ncyBreadcrumbLabel: false}})
+        .state('A.B.C.E', {url: '/e', data: {ncyBreadcrumbLabel: 'State E'}});
+});
+
+/**
  * Module with angular expressions in ncyBreadcrumbLabel
  */
 angular.module('ncy-interpolation-conf', []).config(function($stateProvider) {

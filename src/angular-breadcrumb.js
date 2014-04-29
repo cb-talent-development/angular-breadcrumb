@@ -36,6 +36,12 @@ angular.module('ncy-angular-breadcrumb', ['ui.router.state'])
 
             // Add the state in the chain if not already in and if not abstract
             var $$addStateInChain = function(chain, state, prefixStateInserted) {
+
+                // Allow user to explicitly ignore state
+                if (state.data && (state.data.ncyBreadcrumbLabel === false)) {
+                    return false;
+                }
+
                 var stateAlreadyInChain = false;
                 angular.forEach(chain, function(value) {
                     if(!stateAlreadyInChain && angular.equals(value, state)) {
